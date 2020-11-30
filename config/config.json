@@ -1,16 +1,16 @@
 {
   "development": {
-    "database": "express_auth_development",
+    "database": "loud_and_green_development",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
-    "database": "express_auth_test",
+    "database": "loud_and_green_test",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
-    "database": "express_auth_production",
+    "database": "loud_and_green_production",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }
