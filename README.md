@@ -23,3 +23,10 @@
 | GET | /auth/logout | auth.js | Removes session info |
 | GET | /profile | server.js | Regular User Profile |
 
+| Model | Schema | Association |
+| ----- | ------ | ----------- |
+| User  | id, email, pw |  Has many reviews |
+| Profile Page | id, content, user_id, title | belongs to user |
+| Reviews/comments | id, content, user_id, name, strain_id, profile_id | belongs to user and strain |
+| Strains | id, name, flavor, race, effect | has many comments |
+| Description | strain_id, content | belongs to many strains | 
