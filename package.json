@@ -1,7 +1,7 @@
 {
-  "name": "express-authentication",
+  "name": "loud-and-green",
   "version": "1.0.0",
-  "description": "This is express authentication",
+  "description": "This is my project 2 app",
   "main": "server.js",
   "directories": {
     "test": "test"
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/romebell/express-authentication.git"
+    "url": "git+https://github.com/AlexJBustillos/Loud-and-Green.git"
   },
-  "author": "Rome Bell",
+  "author": "Alex Bustillos",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/romebell/express-authentication/issues"
+    "url": "https://github.com/AlexJBustillos/Loud-and-Green/issues"
   },
-  "homepage": "https://github.com/romebell/express-authentication#readme",
+  "homepage": "https://github.com/AlexJBustillos/Loud-and-Green/blob/main/README.md",
   "dependencies": {
     "axios": "^0.21.0",
     "bcrypt": "^5.0.0",
