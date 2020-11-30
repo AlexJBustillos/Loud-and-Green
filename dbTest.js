@@ -26,18 +26,37 @@ const API_KEY = process.env.API_KEY;
 // }
 // test();
 
-// async function work() {
-//     const url = `strainapi.evanbusse.com/${API_KEY}/strains/search/name/alien`;
-//     axios.get(url)
-//     await (response => {
-//         if (response.status === 200) {
-//             let len = response.data.results.length;
-//             for (let i = 0; i < len; i++) {
-//                 let strainResultObject = response.data.results[i];
-//                 const finalObject = {
-                    
-//                 }
-//             }
-//         }
-//     })
-// }
+//strain model works
+    // const url = `https://strainapi.evanbusse.com/${API_KEY}/strains/search/name/alien`;
+    // axios.get(url)
+    // .then(response => {
+    //     if (response.status === 200) {
+    //         // console.log(response.data);
+    //         let len = response.data.length;
+    //         for (let i = 0; i < len; i++) {
+    //             let strainResultObject = response.data[i];
+    //             const finalObject = {
+    //                 strainId: strainResultObject.id,
+    //                 name: strainResultObject.name,
+    //                 race: strainResultObject.race,
+    //                 description: strainResultObject.desc
+
+    //             };
+    //             // console.log(finalObject);
+    //             db.strain.findOrCreate({
+    //                 where: { strainId: finalObject.strainId },
+    //                 defaults: {
+    //                     name: finalObject.name,
+    //                     race: finalObject.race,
+    //                     description: finalObject.description,
+    //                 }
+    //             }).then(([strain, created]) => {
+    //                 console.log(created);
+    //             })
+    //         }
+    //     }
+    // })
+    // .catch(err => {
+    //     console.log(err);
+    // });
+
