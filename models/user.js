@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.user.belongsToMany(models.strain, { through: models.user_strain });
+      models.user.hasOne(models.profile);
+      models.user.hasMany(models.review);
     }
   };
   user.init({

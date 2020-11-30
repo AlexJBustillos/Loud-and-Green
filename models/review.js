@@ -11,14 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.review.belongsTo(models.strain);
+      models.review.belongsTo(models.user);
     }
   };
   review.init({
     content: DataTypes.STRING,
     userId: DataTypes.INTEGER,
     name: DataTypes.STRING,
-    strainId: DataTypes.INTEGER,
-    profileId: DataTypes.INTEGER
+    strainId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'review',
