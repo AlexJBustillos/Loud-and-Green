@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class description extends Model {
+  class effect extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,15 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.description.belongsTo(models.strain);
+      models.effect.belongsTo(models.strain);
     }
   };
-  description.init({
+  effect.init({
     strainId: DataTypes.INTEGER,
-    content: DataTypes.STRING
+    effects: DataTypes.TEXT
   }, {
     sequelize,
-    modelName: 'description',
+    modelName: 'effect',
   });
-  return description;
+  return effect;
 };

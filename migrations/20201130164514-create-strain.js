@@ -8,17 +8,17 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
-        type: Sequelize.STRING
+      strainId: {
+        type: Sequelize.INTEGER
       },
-      flavor: {
+      name: {
         type: Sequelize.STRING
       },
       race: {
         type: Sequelize.STRING
       },
-      effect: {
-        type: Sequelize.STRING
+      description: {
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,

@@ -16,10 +16,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   strain.init({
+    strainId: DataTypes.INTEGER,
     name: DataTypes.STRING,
-    flavor: DataTypes.STRING,
     race: DataTypes.STRING,
-    effect: DataTypes.STRING
+    description: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'strain',
