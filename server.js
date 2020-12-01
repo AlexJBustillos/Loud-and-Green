@@ -51,11 +51,11 @@ app.get('/', (req, res) => {
   res.render('index', { alerts: res.locals.alerts });
 });
 
-app.get('/profile', isLoggedIn, (req, res) => {
-  res.render('profile');
-});
 
-app.use('/auth', require('./routes/auth'));
+
+app.use('/auth', require('./controllers/auth'));
+app.use('/users', require('./controllers/users'))
+app.use('/strain', require('./controllers/strain'))
 
 
 const PORT = process.env.PORT || 3000;

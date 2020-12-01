@@ -22,11 +22,15 @@
 | POST | /auth/signup | auth.js | Creates User |
 | GET | /auth/logout | auth.js | Removes session info |
 | GET | /profile | server.js | Regular User Profile |
+| GET | /strain | strain.js | strains access |
+
 
 | Model | Schema | Association |
 | ----- | ------ | ----------- |
-| User  | id, email, pw |  Has many reviews |
+| User  | id, email, pw, age |  Has many reviews |
 | Profile Page | id, content, user_id, title | belongs to user |
-| Reviews/comments | id, content, user_id, name, strain_id, profile_id | belongs to user and strain |
-| Strains | id, name, flavor, race, effect | has many comments |
-| Description | strain_id, content | belongs to many strains | 
+| Review/comment | id, content, user_id, name, strain_id | belongs to user and strain |
+| Strain | strainId, name, race, desc | has many comments |
+| Effect | strain_id, effects | belongs to many strains | 
+| Flavor | strain_id, flavors | belongs to many strains | 
+| User_strain | strain_id, user_id | join table | 
