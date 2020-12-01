@@ -10,13 +10,21 @@ const passport = require('../config/ppConfig')
 const isLoggedIn = require('../middleware/isLoggedIn');
 
 // profile route
-router.get('/profile', isLoggedIn, (req, res) => {
-    res.render('profile');
+router.get('/', isLoggedIn, async (req, res) => {
+    const user = await db.user.findOne({
+        where: { id: req.user.id },
+        include: [db.profile]
+    })
+    res.render('profile', { user: user });
   });
 
-// users strains
+// users strains route
 router.get('/strains', isLoggedIn, (req, res) => {
     res.send('I can see my strains')
+})
+
+router.post('/strains/:id', isLoggedIn, (req, res) => {
+    res.redirect('/strains/:id')
 })
 
 module.exports = router;

@@ -55,8 +55,8 @@ app.get('/', (req, res) => {
 
 app.use('/auth', require('./controllers/auth'));
 app.use('/users', require('./controllers/users'))
-app.use('/strain', require('./controllers/strain'))
-
+app.use('/effects', require('./controllers/effects'))
+app.use('/flavors', require('./controllers/flavors'))
 
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {

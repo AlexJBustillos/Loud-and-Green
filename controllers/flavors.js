@@ -10,15 +10,7 @@ const passport = require('../config/ppConfig')
 const isLoggedIn = require('../middleware/isLoggedIn');
 
 router.get('/', isLoggedIn, (req, res) => {
-    res.send('I can see strains')
+    res.send('I can see flavors')
 })
-
-
-
-
-
-
-
-
 
 module.exports = router
