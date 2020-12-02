@@ -48,7 +48,7 @@ router.get('/:name', isLoggedIn, (req, res) => {
 });
 
 // post strain in profile
-router.post('/', isLoggedIn, (req, res) => {
+router.post('/profile', isLoggedIn, (req, res) => {
     db.strain.findOrCreate({
         where: {
             strainId: req.body.strainId

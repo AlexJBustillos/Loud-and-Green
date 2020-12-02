@@ -5,16 +5,7 @@ const API_KEY = process.env.API_KEY;
 
 
 
-// user model works
-// db.user.findOrCreate({
-//     where: { 
-//         name: 'Alex',
-//         email: 'alexjbustillos@gmail.com',
-//         password: 'BrandNewLoudGreen',
-//         age: 30
 
-//     }  
-// });
 
 // profile model works
 // async function test() {
