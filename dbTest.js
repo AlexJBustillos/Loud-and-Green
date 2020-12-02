@@ -3,6 +3,8 @@ const db = require('./models')
 const axios = require('axios')
 const API_KEY = process.env.API_KEY;
 
+
+
 // user model works
 // db.user.findOrCreate({
 //     where: { 
@@ -75,19 +77,19 @@ const API_KEY = process.env.API_KEY;
 // another();
 
 // add strain to user
-// db.user.findOne({
-//     where: {
-//         name: 'Alex'
-//     }
-// }).then((alex) => {
-//     db.strain.findOne({
-//         where: {
-//             strainId: 20
-//         }
-//     }).then((foundStrain) => {
-//         alex.addStrain(foundStrain)
-//     })
-// })
+db.user.findOne({
+    where: {
+        name: 'Alex'
+    }
+}).then((alex) => {
+    db.strain.findOne({
+        where: {
+            strainId: 32
+        }
+    }).then((foundStrain) => {
+        alex.addStrain(foundStrain)
+    })
+})
 
 
 

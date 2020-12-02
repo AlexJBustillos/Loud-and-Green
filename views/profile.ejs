@@ -1,3 +1,15 @@
 <h2>Profile Page</h2>
 
-<h3>Welcome to your PROFILE</h3>
+<h3>Welcome <%= user.name %>  to your PROFILE</h3>
+
+<h2>Strains</h2>
+<% user.strains.forEach((strain) => { %>
+    <p>StrainId: <%= strain.strainId %></p>
+    <br>
+    <p>Name: <%= strain.name %></p>
+    <br>
+    <p>Race: <%= strain.race %></p>
+    <br>
+    <p>Description: <%= strain.description %> </p>
+<% }) %> 
+     
