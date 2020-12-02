@@ -44,17 +44,17 @@ const API_KEY = process.env.API_KEY;
     //                 description: strainResultObject.desc
 
     //             };
-    //             // console.log(finalObject);
-    //             db.strain.findOrCreate({
-    //                 where: { strainId: finalObject.strainId },
-    //                 defaults: {
-    //                     name: finalObject.name,
-    //                     race: finalObject.race,
-    //                     description: finalObject.description,
-    //                 }
-    //             }).then(([strain, created]) => {
-    //                 console.log(created);
-    //             })
+    //             console.log(finalObject.name);
+    //             // db.strain.findOrCreate({
+    //             //     where: { strainId: finalObject.strainId },
+    //             //     defaults: {
+    //             //         name: finalObject.name,
+    //             //         race: finalObject.race,
+    //             //         description: finalObject.description,
+    //             //     }
+    //             // }).then(([strain, created]) => {
+    //             //     console.log(created);
+    //             // })
     //         }
     //     }
     // })
@@ -77,19 +77,19 @@ const API_KEY = process.env.API_KEY;
 // another();
 
 // add strain to user
-db.user.findOne({
-    where: {
-        name: 'Alex'
-    }
-}).then((alex) => {
-    db.strain.findOne({
-        where: {
-            strainId: 32
-        }
-    }).then((foundStrain) => {
-        alex.addStrain(foundStrain)
-    })
-})
+// db.user.findOne({
+//     where: {
+//         name: 'Alex'
+//     }
+// }).then((alex) => {
+//     db.strain.findOne({
+//         where: {
+//             strainId: 32
+//         }
+//     }).then((foundStrain) => {
+//         alex.addStrain(foundStrain)
+//     })
+// })
 
 
 

@@ -1,0 +1,18 @@
+
+<h2> <strong>Strains</strong> </h2>
+    
+<ul><% strainArray.forEach(strain => { %>
+   <li>
+    <strong>Name:</strong> <%= strain.name %> <br>
+    <strong>Race:</strong> <%= strain.race %> <br>
+    <strong>Description:</strong> <%= strain.description %> <br>
+   </li>
+   <form method="POST" action="/controllers/users.js">
+    <input hidden type="text" name="strainId" value="<%= strain.strainId %> ">
+    <button type="submit">Add to your profile</button>
+   </form>
+   <% }) %> 
+</ul>
+
+         
+    

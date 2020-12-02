@@ -20,59 +20,52 @@ router.get('/', isLoggedIn, async (req, res) => {
   });
 
 // users strains route
-router.get('/strains', isLoggedIn, (req, res) => {
-    const url = `https://strainapi.evanbusse.com/${API_KEY}/strains/search/name/alien`;
+router.get('/:name', isLoggedIn, (req, res) => {
+    let name = req.params.name;
+    const url = `https://strainapi.evanbusse.com/${API_KEY}/strains/search/name/${name}`;
     axios.get(url)
     .then(response => {
         if (response.status === 200) {
             let len = response.data.length;
+            const strainArray = [];
             for (let i = 0; i < len; i++) {
                 let strainResultObject = response.data[i];
-                const finalObject = {
+                const strainObject = {
                     strainId: strainResultObject.id,
                     name: strainResultObject.name,
                     race: strainResultObject.race,
                     description: strainResultObject.desc
+            
                 };
-                const strain = db.strain.findOrCreate({
-                    where: { strainId: finalObject.strainId },
-                    defaults: {
-                        name: finalObject.name,
-                        race: finalObject.race,
-                        description: finalObject.description
-                    }
-                }).then(() => {
-                     res.render('profile', { strain })
-                    
-                })
+            strainArray.push(strainObject) 
             }
+        res.render('strains/strainIndex', { strainArray })
         }
     })
     .catch(err => {
         console.log(err);
-    })
-})
+    });
+});
 
-// post review on strains
-router.post('/strains', isLoggedIn, async (req, res) => {
-    const user = await db.user.findOne({
-        where: {
-            name: req.body.name
-        }
-    })
-    const strain = await db.strain.findOne({
+// post strain in profile
+router.post('/', isLoggedIn, (req, res) => {
+    db.strain.findOrCreate({
         where: {
             strainId: req.body.strainId
         }
+    }).then((foundStrain) => {
+        db.user.findOne({
+            where: {
+                id: req.body.id
+            }
+        }).then((id) => {
+            id.addStrain(foundStrain)
+        })
+    }).catch(err => {
+        console.log(err);
     })
-    const review = await db.review.create({
-        content: req.body.content,
-        userId: user.id,
-        name: user.name,
-        strainId: strain.strainId
-    })
-    res.redirect('/strains', { review: review })
+    res.redirect('strains/strainIndex')
 
-})
+});
 
-module.exports = router;
+module.exports = router
