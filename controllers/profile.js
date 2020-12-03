@@ -23,24 +23,22 @@ router.get('/', isLoggedIn, async (req, res) => {
 
 // post strain in profile
 router.post('/', isLoggedIn, (req, res) => {
-    db.strain.findOrCreate({
-        where: {
-            strainId: req.body.strainId
-        }
-    }).then((foundStrain) => {
-        db.user.findOne({
-            where: { id: req.user.id },
-            include: [db.strain]
+        db.strain.findOrCreate({
+            where: {
+                strainId: req.body.strainId
+            },
+            include: [{
+            model: user,
+            where: { id: req.user.dataValue.id }}]
+        }).then((foundStrain) => {
+            let user = db.user;
+            user.addStrain(foundStrain)
         }).catch(err => {
             console.log(err);
-        }).then((user) => {
-            user.addStrain(foundStrain)
-        })
-    }).catch(err => {
-        console.log(err);
     })
     res.redirect('/profile')
-
 })
+
+
 
 module.exports = router
