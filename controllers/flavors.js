@@ -10,17 +10,17 @@ const axios = require('axios')
 const API_KEY = process.env.API_KEY;
 const isLoggedIn = require('../middleware/isLoggedIn');
 
-router.get('/:strainId', isLoggedIn, async (req, res) => {
+router.get('/:strainId', isLoggedIn, (req, res) => {
     let strainId = req.params.strainId
     const url = `https://strainapi.evanbusse.com/${API_KEY}/strains/data/flavors/${strainId}`;
     axios.get(url)
-    await (response => {
+    .then(response => {
         let flavors = response.data;
         db.strain.findOne({
             where: {
                 strainId: req.body.strainId
             }
-        }); await ((foundStrain) => {
+        }).then((foundStrain) => {
             db.flavor.create({
                 strainId: foundStrain.strainId,
                 flavors: flavors.toString()

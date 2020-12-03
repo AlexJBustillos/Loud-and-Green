@@ -10,18 +10,10 @@ const axios = require('axios')
 const API_KEY = process.env.API_KEY;
 const isLoggedIn = require('../middleware/isLoggedIn');
 
-// profile route
-router.get('/', isLoggedIn, async (req, res) => {
-    const user = await db.user.findOne({
-        where: { id: req.user.id },
-        include: [db.strain]
-    })
-    res.render('profile', { user });
-  });
 
 // users strains route
-router.get('/:name', isLoggedIn, (req, res) => {
-    let name = req.params.name;
+router.get('/', (req, res) => {
+    let name = req.query.name;
     const url = `https://strainapi.evanbusse.com/${API_KEY}/strains/search/name/${name}`;
     axios.get(url)
     .then(response => {
@@ -39,33 +31,12 @@ router.get('/:name', isLoggedIn, (req, res) => {
                 };
             strainArray.push(strainObject) 
             }
-        res.render('strains/strainIndex', { strainArray })
+        res.render('strains/index', { strainArray })
         }
     })
     .catch(err => {
         console.log(err);
     });
-});
-
-// post strain in profile
-router.post('/profile', isLoggedIn, (req, res) => {
-    db.strain.findOrCreate({
-        where: {
-            strainId: req.body.strainId
-        }
-    }).then((foundStrain) => {
-        db.user.findOne({
-            where: {
-                id: req.body.id
-            }
-        }).then((id) => {
-            id.addStrain(foundStrain)
-        })
-    }).catch(err => {
-        console.log(err);
-    })
-    res.redirect('strains/strainIndex')
-
 });
 
 module.exports = router

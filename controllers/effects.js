@@ -10,11 +10,11 @@ const axios = require('axios')
 const API_KEY = process.env.API_KEY;
 const isLoggedIn = require('../middleware/isLoggedIn');
 
-router.get('/:strainId', isLoggedIn, async (req, res) => {
+router.get('/:strainId', isLoggedIn, (req, res) => {
     let strainId = req.params.strainId;
     const url = `https://strainapi.evanbusse.com/${API_KEY}/strains/data/effects/${strainId}`;
     axios.get(url)
-    await (response => {
+    .then(response => {
         const effects = response.data;
         for (const [key, value] of Object.entries(effects)) {
             let string = `${key}: ${value}`;
@@ -22,16 +22,16 @@ router.get('/:strainId', isLoggedIn, async (req, res) => {
                 where: {
                     strainId: req.body.strainId
                 }
-            }); await ((foundStrain) => {
+            }).then((foundStrain) => {
                 db.effect.create({
                   strainId: foundStrain.strainId,
                   effects: string  
                 })
+            }).catch(err => {
+                console.log(err);
             })
         }
         res.send({effects: effects})
-    }).catch(err => {
-        console.log(err);
     })
 })
 
