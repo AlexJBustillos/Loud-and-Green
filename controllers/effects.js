@@ -15,23 +15,12 @@ router.get('/:strainId', isLoggedIn, (req, res) => {
     const url = `https://strainapi.evanbusse.com/${API_KEY}/strains/data/effects/${strainId}`;
     axios.get(url)
     .then(response => {
+        const open = []
         const effects = response.data;
-        for (const [key, value] of Object.entries(effects)) {
-            let string = `${key}: ${value}`;
-            db.strain.findOne({
-                where: {
-                    strainId: req.body.strainId
-                }
-            }).then((foundStrain) => {
-                db.effect.create({
-                  strainId: foundStrain.strainId,
-                  effects: string  
-                })
-            }).catch(err => {
-                console.log(err);
-            })
-        }
-        res.send({effects: effects})
+        open.push(effects);
+        res.render('strains/effects', {effects: open})
+    }).catch(err => {
+        console.log(err);
     })
 })
 

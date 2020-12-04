@@ -126,3 +126,30 @@ const API_KEY = process.env.API_KEY;
     
 // })
 
+// let strainId = req.params.strainId;
+    // const url = `https://strainapi.evanbusse.com/${API_KEY}/strains/data/effects/34`;
+    // axios.get(url)
+    // .then(response => {
+    //     const open = []
+    //     const effects = response.data;
+    //     // console.log(effects);
+    //     // let descriptor = Object.getOwnPropertyDescriptor(effects, 'positive')
+    //     // console.log(descriptor);
+    //     // for (let key in effects) {
+    //     //     let value = effects[key];
+    //     //     console.log('>>>>>', key, value);
+            
+    //     // }
+    //     open.push(effects);
+    //     console.log(open);
+    //     // for (const [key, value] of Object.entries(effects)) {
+    //     //     let string = `${key}: ${value}`;
+    //     //     const effectObject = {
+    //     //         effects: string
+    //     //     }
+    //     // open.push(effectObject)
+    //     // }
+    //     // res.send({effects: open})
+    // }).catch(err => {
+    //     console.log(err);
+    // })
