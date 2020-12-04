@@ -1,9 +1,9 @@
 <h1>Effects</h1>
 
 <ul> <% effects.forEach(effect => { %>
-    <li><%= effect.positive %></li>
-    <li><%= effect.negative %></li>
-    <li><%= effect.medical %></li>
+    <li><strong>Pros:</strong><%= effect.positive %></li>
+    <li><strong>Cons:</strong><%= effect.negative %></li>
+    <li><strong>Helps with:</strong><%= effect.medical %></li>
 <% }) %> 
 
 </ul>
