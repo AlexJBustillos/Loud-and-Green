@@ -16,17 +16,8 @@ router.get('/:strainId', isLoggedIn, (req, res) => {
     axios.get(url)
     .then(response => {
         let flavors = response.data;
-        db.strain.findOne({
-            where: {
-                strainId: req.body.strainId
-            }
-        }).then((foundStrain) => {
-            db.flavor.create({
-                strainId: foundStrain.strainId,
-                flavors: flavors.toString()
-            })
-        }) 
-        res.send({ flavors: flavors.toString()})
+         
+        res.render('strains/flavors', { flavors: flavors })
     }).catch(err => {
         console.log(err);
     })

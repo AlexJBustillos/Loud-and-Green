@@ -153,3 +153,13 @@ const API_KEY = process.env.API_KEY;
     // }).catch(err => {
     //     console.log(err);
     // })
+
+    // const url = `https://strainapi.evanbusse.com/${API_KEY}/strains/data/flavors/34`;
+    // axios.get(url)
+    // .then(response => {
+    //     let flavors = response.data;
+    //     console.log(flavors);
+        
+    // }).catch(err => {
+    //     console.log(err);
+    // })
