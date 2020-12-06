@@ -1,0 +1,18 @@
+
+$darkOrange : rgb(44, 12, 4);
+$lightOrange : rgb(157, 62, 9);
+$light : rgb(209, 140, 15);
+$titleFont : 'Shrikhand', cursive;
+$bodyFont : 'Raleway', sans-serif;
+
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@import "./body";
+@import "./header";
+
+
+
+

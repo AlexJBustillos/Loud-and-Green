@@ -1,12 +1,21 @@
 <nav>
-    <ul>
-      <% if (!currentUser) { %>
-        <li><a href="/auth/signup">Signup</a></li>
-        <li><a href="/auth/login">Login</a></li>
-      <% } else { %> 
-        <li><a href="/auth/logout">Logout</a></li>
-        <li><a href="/profile">Profile</a></li>
-        <li><a href="/strains">Strains</a></li>
-      <% } %> 
-    </ul>
-  </nav>
+  <div class="nav-left">
+    <a href="/">Loud and Green</a>
+    <a href="/strains" class="nav-desktop">Strains</a>
+  </div>
+  <div class="nav-right">
+    <% if (!currentUser) { %>
+      <a href="/auth/signup">Signup</a>
+      <a href="/auth/login">Login</a>
+    <% } else { %> 
+      <a href="/auth/logout">Logout</a>
+      <a href="/profile">Profile</a>
+      <a href="/strains">Strains</a>
+    <% } %> 
+
+  </div>
+</nav>
+  
+  
+  
+    

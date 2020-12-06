@@ -1,0 +1,14 @@
+<div class="header">
+    <h1><%= foundStrain.name %> </h1>
+</div>
+
+<div class="container">
+    <p><strong>Race:</strong><%= foundStrain.race %> </p><br>
+    <p><strong>Description:</strong><%= foundStrain.description %> </p><br>
+    <p><strong>Flavor:</strong><%= flavors %> </p><br>
+    <% effects.forEach(effect => { %>
+        <p><strong>Pros:</strong><%= effect.positive %> </p><br>
+        <p><strong>Cons:</strong><%= effect.negative %> </p><br>
+        <p><strong>Helps with:</strong><%= effect.medical %> </p><br>
+    <% }) %> 
+</div>

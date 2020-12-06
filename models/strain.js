@@ -12,7 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       models.strain.belongsToMany(models.user, { through: models.user_strain });
-      models.strain.hasMany(models.review)
+      models.strain.hasMany(models.review);
+      models.strain.hasMany(models.effect);
+      models.strain.hasMany(models.flavor);
     }
   };
   strain.init({

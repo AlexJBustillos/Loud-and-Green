@@ -1,9 +1,31 @@
-<form action="/auth/login" method="POST">
-  <label for="auth-email">Email</label>
-  <input id="auth-email" type="email" name="email">
+<div class="header">
+  <h1>Login</h1>
 
-  <label for="auth-password">Password</label>
-  <input id="auth-password" type="password" name="password">
+</div>
 
-  <input type="submit" value="Log In">
-</form>
+
+
+<div class="container"> 
+  <div class="">
+    <div class="">
+      <form action="/auth/login" method="POST" class="ui form">
+        <div class="form">
+          <label for="auth-email">Email</label>
+          <input id="auth-email" type="email" name="email">
+        </div>
+        <div class="form">
+          <label for="auth-password">Password</label>
+          <input id="auth-password" type="password" name="password">
+        </div>
+        <input type="submit" value="Log In" class="ui secondary button large">
+      </form>
+    </div>
+  </div>
+  <p>Need to <a href="/auth/signup">create an account</a>?</p>
+</div>
+      
+      
+
+
+
+

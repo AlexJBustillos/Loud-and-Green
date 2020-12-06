@@ -12,7 +12,73 @@ const isLoggedIn = require('../middleware/isLoggedIn');
 
 
 // users strains route
-router.get('/', (req, res) => {
+router.get('/', isLoggedIn, (req, res) => {
+    db.strain.findAll({
+        include: [
+            { model: db.effect, model: db.flavor }
+        ]
+    })
+    .then(strain => {
+        res.render('strains/index', { strain })
+    })
+    .catch(err => {
+        console.log(err);
+    })
+});
+    
+
+router.get('/details/:strainId', isLoggedIn, (req, res) => {
+    let strainId = req.params.strainId;
+    const effectsUrl = `https://strainapi.evanbusse.com/${API_KEY}/strains/data/effects/${strainId}`;
+    axios.get(effectsUrl)
+    .then(response => {
+        const open = []
+        const effects = response.data;
+        open.push(effects);
+    })
+    .catch(err => {
+        console.log(err);
+    })
+    .then(() => {
+        const flavorsUrl = `https://strainapi.evanbusse.com/${API_KEY}/strains/data/flavors/${strainId}`;
+        axios.get(flavorsUrl)
+        .then(response => {
+        let flavors = response.data;
+        db.strain.findOne({
+            where: { strainId: strainId }
+        })
+        .then((foundStrain) => {
+            db.flavor.findOrCreate({
+                where: {
+                    strainId: foundStrain
+                },
+                defaults: {
+                    flavors: flavors
+                }
+            })
+            .then(() => {
+                db.effects.findOrCreate({
+                    where: {
+                        strainId: foundStrain
+                    },
+                    defaults: {
+                        effects: open
+                    }
+                })
+            })
+        })
+        .catch(err => {
+            console.log(err);
+          }) 
+        })
+        .catch(err => {
+        console.log(err);
+        })
+    })
+    res.render('strains/details', {effects: open, flavors, foundStrain})
+})
+
+router.get('/search', isLoggedIn, (req, res) => {
     let name = req.query.name;
     const url = `https://strainapi.evanbusse.com/${API_KEY}/strains/search/name/${name}`;
     axios.get(url)
@@ -29,16 +95,34 @@ router.get('/', (req, res) => {
                     description: strainResultObject.desc
             
                 };
-            strainArray.push(strainObject) 
-            }
-        res.render('strains/index', { strainArray })
+                strainArray.push(strainObject)
+                db.strain.findOrCreate({
+                    where: { strainId: strainArray.strainId },
+                    defaults: {
+                        name: strainArray.name,
+                        race: strainArray.race,
+                        description: strainArray.description
+                    }
+                }).then(([strain, created]) => {
+                    console.log(strain, created);
+                }) 
+            };
+            res.render('strains/search', { strainArray })
         }
-    })
-    .catch(err => {
+    }).catch(err => {
         console.log(err);
     });
-});
+})
+            
 
-
+router.delete('/', async (req, res) => {
+    const name = req.body.strainId;
+    db.strain.findOne({
+        where: { name }
+    })
+    await (foundStrain)
+    foundStrain.destroy();
+    res.redirect('/profile');
+})
 
 module.exports = router

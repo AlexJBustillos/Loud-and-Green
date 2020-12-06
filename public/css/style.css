@@ -1,9 +1,111 @@
-nav ul li {
-  text-decoration: none;
-  display: inline-block;
-  margin-right: .3em;
+body {
+  text-align: center;
+  min-height: 100%;
+  margin: 0 auto;
+  font-family: "Raleway", sans-serif;
 }
 
 h1 {
-  color: chartreuse;
+  font-size: 3em;
+  font-weight: 900;
+  line-height: 1em;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  display: block;
 }
+
+@media all and (max-width: 780px) {
+  h1 {
+    font-size: 2.25em;
+  }
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: 800;
+}
+
+.container {
+  width: 85%;
+  margin: 30px auto;
+}
+
+@media all and (min-width: 1400px) {
+  .container {
+    width: 55%;
+  }
+}
+
+@media all and (max-width: 780px) {
+  .container {
+    width: 90%;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .container {
+    width: 100%;
+  }
+}
+
+a {
+  color: #9d3e09;
+  font-weight: 800;
+}
+
+a:hover {
+  color: #d18c0f;
+}
+
+nav {
+  height: 75px;
+  color: white;
+  background: #2c0c04;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: .8em;
+  font-family: "Shrikhand", cursive;
+  letter-spacing: 1px;
+}
+
+nav .nav-left, nav .nav-right {
+  display: inline-block;
+  position: absolute;
+  top: 25px;
+}
+
+nav .nav-left {
+  text-align: left;
+  left: 20px;
+}
+
+nav .nav-right {
+  text-align: right;
+  right: 20px;
+}
+
+.header {
+  background: url("https://images.unsplash.com/photo-1602168431602-9bfa3722a472?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1345&q=80");
+  background-position: center;
+  height: 175px;
+  color: whitesmoke;
+  padding-top: 64px;
+  margin-bottom: 20px;
+  margin-top: 64px;
+  border-top: 64px;
+  font-family: "Shrikhand", cursive;
+  font-size: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+/*# sourceMappingURL=style.css.map */

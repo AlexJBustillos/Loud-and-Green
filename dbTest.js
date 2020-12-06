@@ -82,6 +82,24 @@ const API_KEY = process.env.API_KEY;
 //     })
 // })
 
+//old post route
+// db.user.findOrCreate({
+//     where: {
+//         name: req.user.name
+//     },
+//     include: [db.strain]
+// }).then((user, created) => {
+//     console.log('>>>>', user);
+//     db.strain.findOrCreate({
+//         where: {
+//             strainId: req.body.strainId
+//         }
+//     }).then((strain, created) => {
+//         console.log('>>>>', strain);
+//         user.addStrain(strain).then(() => {
+//             console.log(strain.strainId, 'added to', user.userId);
+//         })
+//     })
 
 
 // add flavors to strain at flavors table
@@ -163,3 +181,30 @@ const API_KEY = process.env.API_KEY;
     // }).catch(err => {
     //     console.log(err);
     // })
+
+
+//     router.post('/', isLoggedIn, (req, res) => {
+//         // console.log(req.user.id);
+//     db.user.findOne({
+//         where: {
+//             id: req.body.userId
+//         }
+//     }).then((user) => {
+//     db.strain.findOrCreate({
+//         where: {
+//             strainId: req.body.strainId,
+//             name: req.body.name,
+//             race: req.body.race,
+//             description: req.body.description
+//         }
+//     }).then((foundStrain) => {
+//         user.addStrain(foundStrain)
+//         console.log(foundStrain, 'added to', user);
+//     }).catch(err => {
+//         console.log(err);
+//     })
+//     }).catch(err => {
+//                 console.log(err);
+//             })
+//     res.redirect('/profile')
+// })

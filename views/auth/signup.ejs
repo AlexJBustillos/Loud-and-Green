@@ -1,15 +1,29 @@
-<form action="/auth/signup" method="POST">
-  <label for="new-email">Email</label>
-  <input id="new-email" type="email" name="email">
+<div class="header">
 
-  <label for="new-name">Name</label>
-  <input id="new-name" type="text" name="name">
+  <h1>Sign Up</h1>
+</div>
 
-  <label for="new-password">Password</label>
-  <input id="new-password" type="password" name="password">
- 
-  <label for="new-age">Age</label>
-  <input id="new-age" type="number" name="age" min="21">
+<div class="container">
+  <div>
+    <div>
+      <form action="/auth/signup" method="POST">
+        <div class="form">
+          <label for="new-email">Email</label>
+          <input id="new-email" type="email" name="email">
+        
+          <label for="new-name">Name</label>
+          <input id="new-name" type="text" name="name">
+        </div>
+        <div class="form">
+          <label for="new-password">Password</label>
+          <input id="new-password" type="password" name="password">
+         
+          <label for="new-age">Age</label>
+          <input id="new-age" type="number" name="age" min="21">
+        </div>
+        <input type="submit" value="Sign up">
+      </form>
+    </div>
+  </div>
+</div>
 
-  <input type="submit" value="Sign up">
-</form>
