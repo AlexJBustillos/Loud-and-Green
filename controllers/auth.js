@@ -12,8 +12,6 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/signup', (req, res) => {
-  console.log(req.body);
-
   db.user.findOrCreate({
     where: { email: req.body.email },
     defaults: {
@@ -24,8 +22,6 @@ router.post('/signup', (req, res) => {
   })
   .then(([user, created]) => {
     if (created) {
-      // if created, success and redirect back to home
-      console.log(`${user.name} was created`);
       // Flash message
       const successObject = {
         successRedirect: '/',

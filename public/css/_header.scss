@@ -4,6 +4,7 @@ a {
     &:hover {
         color: $light;
     }
+    
 }
 
 nav {
@@ -18,7 +19,10 @@ nav {
     font-family: $titleFont;
     letter-spacing: 1px;
     overflow: hidden;
-    z-index: 99;  
+    z-index: 99;
+    @media all and (max-width: 500px){
+		font-size: 3vw;
+	}  
     .nav {
         &-left, &-right {
             display: inline-block;
@@ -51,4 +55,11 @@ nav {
     font-family: $titleFont;
     font-size: 20px;
     @include flexCenter();
+    @media all and (max-width: 500px){
+        background-size: cover;
+        background-position: bottom;
+        background-attachment: fixed;
+        height: 90vh;
+        font-size: 10vw;
+    }
 }

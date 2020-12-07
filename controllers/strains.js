@@ -22,7 +22,7 @@ router.get('/', isLoggedIn, (req, res) => {
         res.render('strains/index', { strain })
     })
     .catch(err => {
-        console.log(err);
+        console.log('Error', err);
     })
 });
     
@@ -50,11 +50,11 @@ router.get('/details/:strainId', isLoggedIn, (req, res) => {
                 effects: string
             }
             }).catch(err => {
-            console.log(err);
+            console.log('Error', err);
             })
         })
         .catch(err => {
-            console.log(err);
+            console.log('Error', err);
         })
         axios.get(flavorsUrl)
         .then(response => {
@@ -72,18 +72,10 @@ router.get('/details/:strainId', isLoggedIn, (req, res) => {
         })
     })
     .catch(err => {
-        console.log(err);
+        console.log('Error', err);
     });
     
 });
-
-
-            
-            
-            
-        
-
-        
 
 router.get('/search', isLoggedIn, (req, res) => {
     let name = req.query.name;
@@ -115,11 +107,18 @@ router.get('/search', isLoggedIn, (req, res) => {
             res.render('strains/search', { strainArray })
         }
     }).catch(err => {
-        console.log(err);
+        console.log('Error', err);
     });
 })
             
-
-
-
 module.exports = router
+
+            
+            
+            
+        
+
+        
+
+
+

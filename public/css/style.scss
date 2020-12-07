@@ -34,6 +34,9 @@ footer {
     height: 2.5rem;
     position: absolute;
     width: 100%;
+    @media all and (max-width: 500px){
+        font-size: 3vw;
+    }
 }
 
 button {
@@ -43,4 +46,11 @@ button {
         background-color: $lightOrange;
         color: $darkOrange;
     }
+}
+
+h1 {
+    text-transform: uppercase;
+    @media all and (max-width: 780px){
+		font-size: 2.25em;
+	}
 }

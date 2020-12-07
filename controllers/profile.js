@@ -36,8 +36,6 @@ router.put('/edit/:id', async (req, res) => {
 })
 
 
-
-// post strain in profile
 router.post('/', isLoggedIn, (req, res) => {
     db.user.findOne({
         where: { id: req.body.userId}
@@ -53,7 +51,7 @@ router.post('/', isLoggedIn, (req, res) => {
             user.addStrain(foundStrain)
         })
     }).catch(err => {
-        console.log(err);
+        console.log('Error', err);
     })
     res.redirect('/profile')
 });
@@ -71,7 +69,7 @@ router.get('/details/:strainId', isLoggedIn, (req, res) => {
         res.render('users/details', { strain })
     })
     .catch(err => {
-        console.log(err);
+        console.log('Error', err);
     })
 });
 
@@ -88,7 +86,7 @@ router.delete('/details/:strainId', isLoggedIn, (req, res) => {
             foundStrain.destroy()
         })
     }).catch(err => {
-        console.log(err);
+        console.log('Error', err);
     })
     res.redirect('/profile');
 })
