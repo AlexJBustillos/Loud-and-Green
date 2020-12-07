@@ -15,17 +15,25 @@ router.get('/', isLoggedIn, async (req, res) => {
     const user = await db.user.findOne({
         where: { id: req.user.id },
         include: [db.strain]
-    })
-    res.render('users/profile', { user, currentUser: res.locals.currentUser });
+    });
+    res.render('users/profile', { user, currentUser: res.locals.currentUser })
+    .catch((error) => {
+        res.status(400).render('404');
+    });
 });
 
+//edit route
 router.get('/edit/:id', async (req, res) => {
     const user = await db.user.findOne({
         where: { id: req.user.id }
     })
     res.render('users/edit', { user, currentUser: res.locals.currentUser })
+    .catch((error) => {
+        res.status(400).render('404');
+    });
 })
 
+//update name route
 router.put('/edit/:id', async (req, res) => {
     const newName = await db.user.update({
         name: req.body.name
@@ -33,9 +41,12 @@ router.put('/edit/:id', async (req, res) => {
         where: { id: req.params.id }
     })
     res.redirect('/profile')
+    .catch((error) => {
+        res.status(400).render('404')
+    })
 })
 
-
+//add strain to profile
 router.post('/', isLoggedIn, (req, res) => {
     db.user.findOne({
         where: { id: req.body.userId}
@@ -51,12 +62,12 @@ router.post('/', isLoggedIn, (req, res) => {
             user.addStrain(foundStrain)
         })
     }).catch(err => {
-        console.log('Error', err);
+        res.status(400).render('404');
     })
     res.redirect('/profile')
 });
     
-
+//details route for user strains
 router.get('/details/:strainId', isLoggedIn, (req, res) => {
     let strainId = req.params.strainId
     db.strain.findOne({
@@ -69,12 +80,12 @@ router.get('/details/:strainId', isLoggedIn, (req, res) => {
         res.render('users/details', { strain })
     })
     .catch(err => {
-        console.log('Error', err);
+        res.status(400).render('404')
     })
 });
 
 
-
+// delete route for removing strain from profile
 router.delete('/details/:strainId', isLoggedIn, (req, res) => {
     const strainId = req.params.strainId;
     db.user.findOne({
@@ -86,7 +97,7 @@ router.delete('/details/:strainId', isLoggedIn, (req, res) => {
             foundStrain.destroy()
         })
     }).catch(err => {
-        console.log('Error', err);
+        res.status(400).render('404')
     })
     res.redirect('/profile');
 })

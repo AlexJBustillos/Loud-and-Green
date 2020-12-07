@@ -11,7 +11,7 @@ const API_KEY = process.env.API_KEY;
 const isLoggedIn = require('../middleware/isLoggedIn');
 
 
-// users strains route
+//strains route
 router.get('/', isLoggedIn, (req, res) => {
     db.strain.findAll({
         include: [
@@ -22,11 +22,11 @@ router.get('/', isLoggedIn, (req, res) => {
         res.render('strains/index', { strain })
     })
     .catch(err => {
-        console.log('Error', err);
+        res.status(400).render('404')
     })
 });
     
-
+//strains details route
 router.get('/details/:strainId', isLoggedIn, (req, res) => {
     let strainId = req.params.strainId;
     const open = [];
@@ -49,12 +49,9 @@ router.get('/details/:strainId', isLoggedIn, (req, res) => {
             defaults: {
                 effects: string
             }
-            }).catch(err => {
-            console.log('Error', err);
-            })
         })
         .catch(err => {
-            console.log('Error', err);
+            res.status(400).render('404')
         })
         axios.get(flavorsUrl)
         .then(response => {
@@ -70,13 +67,15 @@ router.get('/details/:strainId', isLoggedIn, (req, res) => {
             })
             res.render('strains/details', {effects: open, flavors: flavors, strain: strains})
         })
-    })
-    .catch(err => {
-        console.log('Error', err);
-    });
+        })
+        .catch(err => {
+        res.status(400).render('404')
+        });
     
+    });
 });
 
+//search for strain not in strains page
 router.get('/search', isLoggedIn, (req, res) => {
     let name = req.query.name;
     const url = `https://strainapi.evanbusse.com/${API_KEY}/strains/search/name/${name}`;
@@ -107,18 +106,11 @@ router.get('/search', isLoggedIn, (req, res) => {
             res.render('strains/search', { strainArray })
         }
     }).catch(err => {
-        console.log('Error', err);
+        res.status(400).render('404')
     });
 })
             
 module.exports = router
 
             
-            
-            
         
-
-        
-
-
-
