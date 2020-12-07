@@ -1,14 +1,23 @@
 <div class="header">
-    <h1><%= foundStrain.name %> </h1>
+    <h2><%= strain.name %> </h2>
 </div>
 
 <div class="container">
-    <p><strong>Race:</strong><%= foundStrain.race %> </p><br>
-    <p><strong>Description:</strong><%= foundStrain.description %> </p><br>
-    <p><strong>Flavor:</strong><%= flavors %> </p><br>
+    <p><i>Race:</i> <%= strain.race.toUpperCase() %> </p><br>
+    <p><i>Description:</i> <%= strain.description %> </p><br>
+    <p><i>Flavor:</i> <%= flavors %> </p><br>
     <% effects.forEach(effect => { %>
-        <p><strong>Pros:</strong><%= effect.positive %> </p><br>
-        <p><strong>Cons:</strong><%= effect.negative %> </p><br>
-        <p><strong>Helps with:</strong><%= effect.medical %> </p><br>
-    <% }) %> 
+        <p><i>Pros: </i><%= effect.positive %> </p><br>
+        <p><i>Cons: </i><%= effect.negative %> </p><br>
+        <p><i>Helps with: </i><%= effect.medical %> </p><br>
+    <% }) %>
+    
+    <form method="POST" action="/profile">
+        <input  type="hidden" name="strainId" value="<%= strain.strainId %> ">
+        <input type="hidden" name="name" value="<%= strain.name %> ">
+        <input type="hidden" name="race" value="<%= strain.race %> ">
+        <input type="hidden" name="description" value="<%= strain.description %> ">
+        <input type="hidden" name="userId" value="<%= currentUser.id %> ">
+        <button type="submit">Add to your profile</button>
+    </form> 
 </div>

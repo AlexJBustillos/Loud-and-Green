@@ -16,48 +16,82 @@ router.get('/', isLoggedIn, async (req, res) => {
         where: { id: req.user.id },
         include: [db.strain]
     })
-    res.render('profile', { user, currentUser: res.locals.currentUser });
-  });
+    res.render('users/profile', { user, currentUser: res.locals.currentUser });
+});
+
+router.get('/edit/:id', async (req, res) => {
+    const user = await db.user.findOne({
+        where: { id: req.user.id }
+    })
+    res.render('users/edit', { user, currentUser: res.locals.currentUser })
+})
+
+router.put('/edit/:id', async (req, res) => {
+    const newName = await db.user.update({
+        name: req.body.name
+    }, {
+        where: { id: req.params.id }
+    })
+    res.redirect('/profile')
+})
 
 
 
 // post strain in profile
-router.post('/', isLoggedIn, async (req, res) => {
-        // console.log(req.user.id);
-    // console.log('>>>>>>>',req.body.name, req.body.race, req.body.description);
-    let user =  await db.user.findOne({
-        where: {
-            id: req.body.userId
-        }
-    }) 
-    if (user) {
-        let [strain, created] = await db.strain.findOrCreate({
-            where: { strainId: req.body.strainId },
+router.post('/', isLoggedIn, (req, res) => {
+    db.user.findOne({
+        where: { id: req.body.userId}
+    }).then((user) => {
+        db.strain.findOne({
+            where: { strainId: req.body.strainId},
             defaults: {
                 name: req.body.name,
                 race: req.body.race,
                 description: req.body.description
             }
-        });
-        return [strain, created];
-    }
-    try {
-        user.addStrain(strain)
-        console.log('>>>>>', strain, 'added to', user);
-
-    } catch {
-        console.log('error in updating strain');
-    }
-    
+        }).then((foundStrain) => {
+            user.addStrain(foundStrain)
+        })
+    }).catch(err => {
+        console.log(err);
+    })
     res.redirect('/profile')
+});
+    
 
+router.get('/details/:strainId', isLoggedIn, (req, res) => {
+    let strainId = req.params.strainId
+    db.strain.findOne({
+        where: { strainId: strainId },
+        include: [
+            {model: db.effect, model: db.flavor}
+        ]
+    })
+    .then(strain => {
+        res.render('users/details', { strain })
+    })
+    .catch(err => {
+        console.log(err);
+    })
 });
 
-// router.get('/:strainId/delete', isLoggedIn, async (req, res) => {
-//     res.send('delete me please')
-// })
 
-// router.
+
+router.delete('/details/:strainId', isLoggedIn, (req, res) => {
+    const strainId = req.params.strainId;
+    db.user.findOne({
+        where: { id: req.body.userId }
+    }).then((user) => {
+        db.strain.findOne({
+            where: { strainId: strainId }
+        }).then((foundStrain) => {
+            foundStrain.destroy()
+        })
+    }).catch(err => {
+        console.log(err);
+    })
+    res.redirect('/profile');
+})
 
 
         

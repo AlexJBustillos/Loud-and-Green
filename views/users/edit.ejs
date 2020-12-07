@@ -1,0 +1,13 @@
+<div class="header">
+    <h2>Edit name below</h2>
+</div>
+
+
+<div class="container">
+    
+    <form method="POST" action="/profile/edit/<%= user.id %>?_method=PUT" >
+    <label for="name">New Name</label>
+    <input type="text" name="name" id="name" value="<%= user.name %> ">
+    <input type="submit" value="submit">
+    </form>
+</div>

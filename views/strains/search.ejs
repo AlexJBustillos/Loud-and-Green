@@ -1,5 +1,5 @@
 <div class="header">
-    <h2>Strains</h2>
+    <h2>Search Strains</h2>
 </div>
 
 <form action="/strains/search" method="GET">
@@ -10,22 +10,16 @@
  
  <div class="container">
     <% strainArray.forEach(strain => { %>
-       <li>
-        <strong>Name:</strong> <%= strain.name %> <br>
-        <strong>Race:</strong> <%= strain.race %> <br>
-        <strong>Description:</strong> <%= strain.description %> <br>
-        <a href="/effects/<%= strain.strainId%>"><strong>Effects</strong></a> <br>
-        <a href="/flavors/<%= strain.strainId%>"><strong>Flavors</strong></a>
-       </li>
-       <form method="POST" action="/profile">
-        <input hidden type="text" name="strainId" value="<%= strain.strainId %> ">
-        <input type="hidden" name="name" value="<%= strain.name %> ">
-        <input type="hidden" name="race" value="<%= strain.race %> ">
-        <input type="hidden" name="description" value="<%= strain.description %> ">
-        <input type="hidden" name="userId" value="<%= currentUser.id %> ">
-        <button type="submit">Add to your profile</button>
+       <h2>Click for details: <a href="/strains/details/<%= strain.strainId %> "><%= strain.name %></a></h2>
+        <form method="POST" action="/profile">
+            <input hidden type="text" name="strainId" value="<%= strain.strainId %> ">
+            <input type="hidden" name="name" value="<%= strain.name %> ">
+            <input type="hidden" name="race" value="<%= strain.race %> ">
+            <input type="hidden" name="description" value="<%= strain.description %> ">
+            <input type="hidden" name="userId" value="<%= currentUser.id %> ">
+            <button type="submit">Add to your profile</button>
        </form>
-       <% }) %> 
+    <% }) %> 
+</div>
     
  
- </div>

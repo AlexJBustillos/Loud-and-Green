@@ -1,0 +1,23 @@
+<div class="header">
+    <div>
+        <h2>Welcome <%= user.name %>:</h2>
+    </div>
+</div>
+
+        
+<div>
+    <h2>Edit <a href="/profile/edit/<%= user.id %> ">name</a> here</h2>
+</div>    
+
+
+
+<div>
+    <h2>Your Strains</h2>
+
+</div>
+
+<div class="container">
+    <% user.strains.forEach((strain) => { %>
+        <h3>Click for details: <a href="/profile/details/<%= strain.strainId %> "><%= strain.name %></a></h3>
+     <% }) %> 
+</div>
