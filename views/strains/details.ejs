@@ -5,13 +5,13 @@
 <div class="container">
     <p><i>Race:</i> <%= strain.race.toUpperCase() %> </p><br>
     <p><i>Description:</i> <%= strain.description %> </p><br>
-    <p><i>Flavor:</i> <%= flavors %> </p><br>
+    <p><i>Flavor 🎶 's:</i> <%= flavors %> </p><br>
     <% effects.forEach(effect => { %>
-        <p><i>Pros: </i><%= effect.positive %> </p><br>
-        <p><i>Cons: </i><%= effect.negative %> </p><br>
-        <p><i>Helps with: </i><%= effect.medical %> </p><br>
+        <p><i>Pros ✅ : </i><%= effect.positive %> </p><br>
+        <p><i>Cons 🚫 : </i><%= effect.negative %> </p><br>
+        <p><i>Helps with 🏥 : </i><%= effect.medical %> </p><br>
     <% }) %>
-    
+    <a HREF="javascript:javascript:history.go(-1)">🔙 </a>
     <form method="POST" action="/profile">
         <input  type="hidden" name="strainId" value="<%= strain.strainId %> ">
         <input type="hidden" name="name" value="<%= strain.name %> ">

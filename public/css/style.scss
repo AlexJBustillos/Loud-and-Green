@@ -4,6 +4,8 @@ $lightOrange : rgb(157, 62, 9);
 $light : rgb(209, 140, 15);
 $titleFont : 'Shrikhand', cursive;
 $bodyFont : 'Raleway', sans-serif;
+$fail: rgb(255, 95, 2);
+$success: rgb(121, 248, 1);
 
 @mixin flexCenter {
     display: flex;
@@ -13,6 +15,32 @@ $bodyFont : 'Raleway', sans-serif;
 @import "./body";
 @import "./header";
 
+#pageContainer {
+    position: relative;
+    min-height: 100vh;
+}
+#contentWrap {
+    padding-bottom: 2.5rem;
+}
 
+footer {
+    @include flexCenter();
+	background: $darkOrange;
+	color: $light;
+    text-align: center;
+    font-family: $titleFont;
+    font-size: 24px;
+    bottom: 0;
+    height: 2.5rem;
+    position: absolute;
+    width: 100%;
+}
 
-
+button {
+    background-color: $darkOrange;
+    color: $light;
+    &:hover {
+        background-color: $lightOrange;
+        color: $darkOrange;
+    }
+}

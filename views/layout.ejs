@@ -10,13 +10,20 @@
   </head>
   <%- include('partials/navbar') %> 
   <body>
-    <main>
-      <%- include('partials/alerts') %> 
-      
-      
-      <%- body %>
-      
-
-    </main>
+    <div id="pageContainer">
+      <div id="contentWrap">
+        <main>
+          <%- include('partials/alerts') %> 
+          
+          
+          <%- body %>
+          
+    
+        </main>
+      </div>
+      <%- include('partials/footer') %> 
+    </div>
   </body>
-</html>
+  </html>
+
+      
